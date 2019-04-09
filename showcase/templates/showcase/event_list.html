@@ -1,0 +1,25 @@
+{% extends 'showcase/base.html' %}
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% if events %}
+         {% for event in events %}
+            <div class="col-sm-3">
+            <div class="card my-2">
+                <a href="" ><img src="{{event.cover.url}}" class="img img-responsive" style="height:250px; width:250px;" alt=""></a>
+                <h6 style="text-align:center;">{{event.event_name}}</h6>
+
+            </div>
+            <div class="card-body" style="text-align:justify; ">
+                <p>{{event.venue}}</p>
+                <p>{{event.time}}</p>
+                <p>{{event.date}}</p>
+            </div>
+            </div>
+         {% endfor %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
