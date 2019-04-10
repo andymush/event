@@ -1,0 +1,26 @@
+{% extends 'showcase/base.html'%}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="{{event.cover.url}}" style="width:100%; height:70%; padding:10px;">
+            <div class="card card-body">
+            <h4>{{event.event_name}}</h4>
+                <p>{{event.venue}}</p>
+                <p>{{event.time}}</p>
+                <p>{{event.date}}</p>
+                <p>{{event.fee}}</p>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card card-header">
+                <h5>Description</h5>
+            </div>
+            <div class="card card-body">
+                <p>{{event.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'showcase/base.html' %}
+{% block title %}{% if object %}Update Event{% else %}Create Event {% endif %}{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+                <h4>{% if object %} Update Event {% else %}Create Event{% endif %}</h4>
+                <hr>
+                <form method="post" class="form-horizontal" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="form-group">
+                        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
