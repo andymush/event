@@ -125,3 +125,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_URL = 'showcase:login'
+LOGIN_REDIRECT_URL = 'showcase:event-index'
+
+LOGOUT_REDIRECT_URL = 'showcase:login'

@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
 </head>
+
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +26,7 @@
         <a class="nav-link" href="{% url 'showcase:create-event' %}"><i class="fas fa-plus-square"></i>&nbsp Add Event<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href=""><i class="fas fa-sign-out-alt"></i>&nbsp Logout</a>
+        <a class="nav-link" href="{% url 'showcase:logout' %}"><i class="fas fa-sign-out-alt"></i>&nbsp Logout</a>
       </li>
     </ul>
   </div>

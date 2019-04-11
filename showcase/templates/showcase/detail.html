@@ -20,6 +20,27 @@
             <div class="card card-body">
                 <p>{{event.description}}</p>
             </div>
+
+            <div class="card card-header">
+                <h5>Comments</h5>
+            </div>
+            <div class="card card-body">
+                {% if event.comment_set %}
+                {% for comment in event.comment_set.all %}
+
+                <div class="card card-body">
+                    <ul class=" nav nav-pills">
+                        <li class="active"><a href="">Click me if you wish to leave a comment</a></li>
+                    </ul>
+                </div>
+                <div class="card card-footer">
+                       > {{ comment.email }}<br>
+                        {{ comment.comment }}
+                    </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+
         </div>
     </div>
 </div>
