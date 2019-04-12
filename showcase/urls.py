@@ -10,9 +10,10 @@ urlpatterns = [
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
     path('', views.EventListView.as_view(), name='event-index'),
     path('create_event', views.EventCreateView.as_view(), name='create-event'),
-    path('(?P<event_id>[0-9]+)/create_comment', views.create_comment, name='create-comment'),
     path('<int:pk>/update-event', views.EventUpdateView.as_view(), name='update-event'),
     path('<int:pk>/delete-event', views.EventDeleteView.as_view(), name='delete-event'),
     path('(?P<event_id>[0-9]+)/', views.detail, name='detail'),
     path('(?P<event_id>[0-9]+)/new-comment', views.create_comment, name='create-comment'),
+    path('(?P<event_id>[0-9]+)/delete-comment/(?P<comment_id>[0-9]+)/', views.comment_delete, name='comment-delete'),
+    path('<int:pk>/update-comment', views.CommentUpdateView.as_view(), name='comment_update'),
 ]

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <img src="{{event.cover.url}}" style="width:100%; height:70%; padding:10px;">
+            <img src="{{event.cover.url}}" style="width:100%; height:50%; padding:10px;">
             <div class="card card-body">
             <h4>{{event.event_name}}</h4>
                 <p>{{event.venue}}</p>
@@ -15,28 +15,27 @@
         </div>
         <div class="col-sm-6">
             <div class="card card-header">
-                <h5>Description</h5>
+                <h5 style="color:white;">Description</h5>
             </div>
             <div class="card card-body">
                 <p>{{event.description}}</p>
             </div>
 
             <div class="card card-header">
-                <h5>Comments</h5>
+                <h5 style="color:white;">Comments</h5>
             </div>
-            <div class="card card-body">
+            <a href="{% url 'showcase:create-comment' event.id %}"><button class="btn btn-primary">Leave a comment</button></a>
                 {% if event.comment_set %}
                 {% for comment in event.comment_set.all %}
 
-                <div class="card card-body">
-                    <ul class=" nav nav-pills">
-                        <li class="active"><a href="">Click me if you wish to leave a comment</a></li>
-                    </ul>
-                </div>
                 <div class="card card-footer">
-                       > {{ comment.email }}<br>
-                        {{ comment.comment }}
-                    </div>
+                    <p style="color:red;"> {{ comment.email }}</p><br>
+                    <p style="color:white;">{{ comment.comment }}</p>
+
+                    <a class="btn btn-danger" style="width:10%; float:right;" href="{% url 'showcase:comment-delete' event.id comment.id%}"><i class="fas fa-trash"></i></a>
+                    <a class="btn btn-primary" style="width:10%; float:right;" href="{% url 'showcase:comment_update' comment.id %}"><i class="fas fa-edit"></i></a>
+                    
+                </div>
                 {% endfor %}
                 {% endif %}
             </div>

@@ -17,10 +17,18 @@ class EventCreateView(LoginRequiredMixin, CreateView):
     model = Event
     fields = ['event_name', 'venue', 'time', 'fee', 'date', 'description', 'contact', 'cover']
 
+    def form_valid(self, form, **kwargs):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
 
 class EventUpdateView(LoginRequiredMixin, UpdateView):
     model = Event
     fields = ['event_name', 'venue', 'time', 'fee', 'date', 'description', 'contact', 'cover']
+
+    def form_valid(self, form, **kwargs):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 
 class EventDeleteView(DeleteView):
@@ -41,6 +49,7 @@ def create_comment(request, event_id):
         comment = form.save(commit=False)
         comment.event = event
         comment.save()
+        return render(request, 'showcase/detail.html', {'event': event})
     return render(request, 'showcase/create_comment.html', {'form': form})
 
 
@@ -75,4 +84,19 @@ def signin(request):
 def logout_user(request):
     logout(request)
     return redirect('showcase:login')
+
+
+def comment_delete(request, event_id, comment_id):
+    event = get_object_or_404(Event, pk=event_id)
+    comment = get_object_or_404(Comment, pk=comment_id)
+    comment.delete()
+    return render(request, 'showcase/detail.html', {'event':event})
+
+
+class CommentUpdateView(UpdateView):
+    model = Comment
+    fields = ['email', 'comment']
+    template_name = 'showcase/update_comment.html'
+
+
 
